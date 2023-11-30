@@ -21,7 +21,7 @@ const Footer = () => {
             <Link to="/cart" className="footer__link">Cart</Link>
           </div>
           <div className="footer__copyright">
-            Cpoyright &copy; 2023 Library
+            Copyright &copy; 2023 Library
           </div>
         </div>
       </div>

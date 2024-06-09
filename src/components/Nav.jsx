@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LibraryLogo from "../assets/Library.svg";
 import { Link } from "react-router-dom";
 
 const Nav = ({ numberOfItems }) => {
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth <= 768); // Adjust the breakpoint as needed
+    };
+
+    checkScreenSize();
+
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => {
+      window.removeEventListener("resize", checkScreenSize);
+    };
+  }, []);
+
   function openMenu() {
     document.body.classList += " menu--open";
   }
@@ -29,18 +45,21 @@ const Nav = ({ numberOfItems }) => {
               Books
             </Link>
           </li>
-          <button className="btn__menu" onClick={openMenu}>
-            <FontAwesomeIcon icon="bars" />
-          </button>
-          <li className="nav__icon">
-            <Link to="/cart" className="nav__link">
-              <FontAwesomeIcon icon="shopping-cart" />
-            </Link>
-
-            {numberOfItems > 0 && (
-              <span className="cart__length">{numberOfItems}</span>
-            )}
-          </li>
+          {isSmallScreen && (
+            <button className="btn__menu" onClick={openMenu}>
+              <FontAwesomeIcon icon="bars" />
+            </button>
+          )}
+          {!isSmallScreen && (
+            <li className="nav__icon">
+              <Link to="/cart" className="nav__link">
+                <FontAwesomeIcon icon="shopping-cart" />
+              </Link>
+              {numberOfItems > 0 && (
+                <span className="cart__length">{numberOfItems}</span>
+              )}
+            </li>
+          )}
         </ul>
         <div className="menu__backdrop">
           <button className="btn__menu btn__menu--close" onClick={closeMenu}>

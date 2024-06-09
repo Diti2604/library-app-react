@@ -7,6 +7,14 @@ import { books } from "./data";
 import BookInfo from "./pages/BookInfo";
 import Cart from "./pages/Cart";
 import { useEffect, useState } from "react";
+import Success from "./pages/Success";
+import Cancel from "./pages/Cancel";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+const stripePromise = loadStripe(
+  "pk_test_51O7w6WKs6k4Ri2v4TcwtW6Vn19LbcxveV5QERvltC25Et59yU0gd8tWoir5FtrIpohwYIlVRvOJMWYXigLboeQVZ00TdQ65v6f"
+);
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -29,15 +37,14 @@ function App() {
   }
 
   function removeItem(item) {
-    setCart(cart.filter(book => book.id !== item.id))
+    setCart(cart.filter((book) => book.id !== item.id));
   }
 
-
-  function numberOfItems(){
+  function numberOfItems() {
     let counter = 0;
-    cart.forEach(item => {
-      counter += item.quantity
-    })
+    cart.forEach((item) => {
+      counter += item.quantity;
+    });
     return counter;
   }
 
@@ -58,14 +65,21 @@ function App() {
         <Route
           path="/cart"
           render={() => (
-            <Cart
-              books={books}
-              cart={cart}
-              changeQuantity={changeQuantity}
-              removeItem={removeItem}
-            />
+            <Elements stripe={stripePromise}>
+              <Cart
+                books={books}
+                cart={cart}
+                changeQuantity={changeQuantity}
+                removeItem={removeItem}
+              />
+            </Elements>
           )}
         />
+
+        <Route path="/success" render={() => <Success />} />
+
+        <Route path="/cancel" render={() => <Cancel />} />
+
         <Footer />
       </div>
     </Router>

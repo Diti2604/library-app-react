@@ -48,17 +48,11 @@ const BookInfo = ({ books, addToCart, cart }) => {
                 <div className="book__summary">
                   <h3 className="book__summary--title">Summary</h3>
                   <p className="book__summary__para">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Non, earum animi tempore ducimus corporis aliquid magni eos
-                    est modi beatae rem officiis dolorem harum, deserunt
-                    blanditiis commodi repellat ea qui.
+                    {book.summary}
                   </p>
                   <br />
                   <p className="book__summary--para">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Non, earum animi tempore ducimus corporis aliquid magni eos
-                    est modi beatae rem officiis dolorem harum, deserunt
-                    blanditiis commodi repellat ea qui.
+                    {book.summary}
                   </p>
                 </div>
 

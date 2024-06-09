@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom";
 import EmptyCart from "../assets/empty_cart.svg";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(
+  "pk_test_51O7w6WKs6k4Ri2v4TcwtW6Vn19LbcxveV5QERvltC25Et59yU0gd8tWoir5FtrIpohwYIlVRvOJMWYXigLboeQVZ00TdQ65v6fF"
+);
 
 const Cart = ({ cart, changeQuantity, removeItem }) => {
   const total = () => {
@@ -8,6 +13,26 @@ const Cart = ({ cart, changeQuantity, removeItem }) => {
       price += +((item.salePrice || item.originalPrice) * item.quantity);
     });
     return price;
+  };
+
+  const checkout = async () => {
+    try {
+      const response = await fetch("http://localhost:4000/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ items: cart }),
+      });
+
+      const responseData = await response.json();
+
+      if (responseData.url) {
+        window.location.assign(responseData.url);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
@@ -28,7 +53,7 @@ const Cart = ({ cart, changeQuantity, removeItem }) => {
               <div className="cart__body">
                 {cart.map((book) => {
                   return (
-                    <div className="cart__item">
+                    <div className="cart__item" key={book.id}>
                       <div className="cart__book">
                         <img
                           src={book.url}
@@ -100,8 +125,8 @@ const Cart = ({ cart, changeQuantity, removeItem }) => {
                   <span>${total().toFixed(2)}</span>
                 </div>
                 <button
-                  className="btn btn__checkout no-cursor"
-                  onClick={() => alert(`Haven't got around to doing this :(`)}
+                  className="btn btn__checkout"
+                  onClick={checkout}
                 >
                   Proceed to checkout
                 </button>

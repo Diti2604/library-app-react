@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .App {
@@ -45,8 +45,6 @@ a {
 a:hover {
   text-decoration: underline;
 }
-
-
 
 ul {
   display: flex;
@@ -217,7 +215,6 @@ button:active {
   color: white;
 }
 
-
 /* 
 
 LANDING
@@ -225,7 +222,7 @@ LANDING
 */
 
 #landing {
-  background-color: rgba(115, 66, 214, 0.1)
+  background-color: rgba(115, 66, 214, 0.1);
 }
 
 header {
@@ -255,7 +252,7 @@ header {
   /* Added this after the tutorial to 
   show it over the wave on larger screens */
   z-index: 50;
-  
+
   /* Added this after the tutorial to 
   make landing page responsive on laptops */
   max-height: 50vh;
@@ -414,7 +411,7 @@ FEATURES
 }
 
 .book__price--skeleton {
-  width : 200px;
+  width: 200px;
   height: 19px;
 }
 
@@ -508,7 +505,7 @@ BOOKS PAGE
 
 #books__main {
   flex: 1;
-  background-color: rgb(248,249,250);
+  background-color: rgb(248, 249, 250);
 }
 
 .books__header {
@@ -622,7 +619,7 @@ select {
 }
 
 .book__selected--title {
-  margin-bottom: 8px
+  margin-bottom: 8px;
 }
 
 .book__summary--title {
@@ -697,7 +694,6 @@ select {
   max-width: 90px;
   max-height: 128px;
 }
-
 
 .cart__book--info {
   display: flex;
@@ -803,7 +799,6 @@ select {
   }
 }
 
-
 /* SMALL PHONES, LARGE SMARTPHONES */
 @media (max-width: 550px) {
   .btn__menu {
@@ -828,4 +823,50 @@ select {
   .cart__book--info {
     padding-left: 0;
   }
+}
+
+.success-container {
+  background-color: #f0fff4;
+  border: 1px solid #68d391;
+  color: #38a169;
+  padding: 24px 32px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 64px 0;
+  padding: 40px 32px;
+}
+
+.success-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.success-message {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.success-link {
+  color: #4a9588;
+}
+
+.success-link:hover {
+  color: #276749;
+}
+
+.cancel-container {
+  background-color: #fee2e2;
+  border: 1px solid #fecaca;
+  color: #c53030;
+  padding: 24px 32px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 86px 0;
+  padding: 32px 32px;
+}
+
+.cancel-message {
+  font-size: 18px;
+  margin-bottom: 16px;
 }

@@ -18,8 +18,8 @@ module.exports = async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       line_items: lineItems,
       mode: "payment",
-      success_url:process.env.SUCCESS_URL,
-      cancel_url: process.env.CANCEL_URL,
+      success_url: "https://library-ecom-app-react.vercel.app/",
+      cancel_url:  "https://library-ecom-app-react.vercel.app/",
     });
 
     res.json({ url: session.url });

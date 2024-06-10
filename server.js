@@ -32,6 +32,6 @@ app.post("/checkout", async (req, res) => {
     res.status(500).send({ error: error.message });
   }
 });
-app.listen(9000, () => {
+app.listen(2000, () => {
   console.log("Server is running on port 9000");
 });

@@ -13,7 +13,7 @@ const Cart = ({ cart, changeQuantity, removeItem }) => {
 
   const checkout = async () => {
     try {
-      const response = await fetch("https://library-ecom-app-react.vercel.app/checkout", {
+      const response = await fetch("http://localhost:4000/checkout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -30,7 +30,7 @@ const Cart = ({ cart, changeQuantity, removeItem }) => {
       console.error("Error:", error);
     }
   };
-//
+
   return (
     <div id="books__body">
       <main id="books__main">

@@ -13,7 +13,7 @@ const Cart = ({ cart, changeQuantity, removeItem }) => {
 
   const checkout = async () => {
     try {
-      const response = await fetch("http://localhost:4000/checkout", {
+      const response = await fetch("https://library-ecom-app-react-miq7pc972-diti2604s-projects.vercel.app/checkout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

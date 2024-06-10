@@ -122,6 +122,7 @@ const Cart = ({ cart, changeQuantity, removeItem }) => {
                 </div>
                 <button
                   className="btn btn__checkout"
+                  target="_blank"
                   onClick={checkout}
                 >
                   Proceed to checkout

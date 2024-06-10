@@ -76,9 +76,9 @@ function App() {
           )}
         />
 
-        <Route path="/success" render={() => <Success />} />
+        <Route path="https://library-ecom-app-react.vercel.app/success" render={() => <Success />} />
 
-        <Route path="/cancel" render={() => <Cancel />} />
+        <Route path="https://library-ecom-app-react.vercel.app/cancel" render={() => <Cancel />} />
 
         <Footer />
       </div>

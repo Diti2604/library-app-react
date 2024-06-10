@@ -1,10 +1,6 @@
 import { Link } from "react-router-dom";
 import EmptyCart from "../assets/empty_cart.svg";
-import { loadStripe } from "@stripe/stripe-js";
 
-const stripePromise = loadStripe(
-  "pk_test_51O7w6WKs6k4Ri2v4TcwtW6Vn19LbcxveV5QERvltC25Et59yU0gd8tWoir5FtrIpohwYIlVRvOJMWYXigLboeQVZ00TdQ65v6fF"
-);
 
 const Cart = ({ cart, changeQuantity, removeItem }) => {
   const total = () => {

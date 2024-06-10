@@ -13,7 +13,7 @@ const Cart = ({ cart, changeQuantity, removeItem }) => {
 
   const checkout = async () => {
     try {
-      const response = await fetch("http://localhost:4000/checkout", {
+      const response = await fetch("http://localhost:9000/checkout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -24,7 +24,7 @@ const Cart = ({ cart, changeQuantity, removeItem }) => {
       const responseData = await response.json();
 
       if (responseData.url) {
-        window.location.assign(responseData.url);
+        window.open(responseData.url, '_blank');
       }
     } catch (error) {
       console.error("Error:", error);

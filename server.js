@@ -1,13 +1,15 @@
-
+const express = require("express");
 const stripe = require("stripe")(
   "sk_test_51O7w6WKs6k4Ri2v4qQEuNLqoaaLMdUezwYmUAZvtq9CUEVXSA2Yr5azIudh7lLbjKsnWxznoNGFQjBHEhP7ngKQC00uQoJh9EO"
 );
+const cors = require("cors");
+const app = express();
 require("dotenv").config();
-module.exports = async (req, res) => {
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
-  }
-
+app.use(cors());
+app.use(express.static("public"));
+app.use(express.json());
+app.post("/checkout", async (req, res) => {
+  console.log(req.body);
   const items = req.body.items;
   let lineItems = [];
   items.forEach((item) => {
@@ -21,12 +23,15 @@ module.exports = async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       line_items: lineItems,
       mode: "payment",
-      success_url: "https://library-ecom-app-react.vercel.app/",
-      cancel_url: "https://library-ecom-app-react.vercel.app/",
+      success_url: "https://library-ecom-app-react.vercel.app/success",
+      cancel_url: "https://library-ecom-app-react.vercel.app/cancel",
     });
 
-    res.json({ url: session.url });
+    res.send(JSON.stringify({ url: session.url }));
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
-};
+});
+app.listen(9000, () => {
+  console.log("Server is running on port 9000");
+});
